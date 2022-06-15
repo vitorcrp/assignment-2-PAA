@@ -3,19 +3,6 @@ package Questao1.A;
 public class Permutation
 {
 
-    public static void main(String[] args)
-
-    {
-
-        String str = "ABC";
-
-        int n = str.length();
-
-        Permutation permutation = new Permutation();
-
-        permutation.permute(str, 0, n-1);
-
-    }
 
 
 
@@ -31,7 +18,7 @@ public class Permutation
 
      */
 
-    private void permute(String str, int l, int r)
+    public void permute(String str, int l, int r)
 
     {
 
@@ -91,6 +78,9 @@ public class Permutation
         return String.valueOf(charArray);
 
     }
+
+
+
 
 
 }
