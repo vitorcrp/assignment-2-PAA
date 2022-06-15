@@ -9,7 +9,7 @@ public class CiclosCaminhamento {
     static int branco = 0, cinza = 1, preto = 2;
 
 
-    static void DFSCycleUtil(Graph grafo, int origem, int pai, int[] cores, int pais[]) {
+    static void DFSCycleUtil(Graph grafo, int origem, int pai, int[] cores, int[] pais) {
 
 
 
@@ -45,13 +45,9 @@ public class CiclosCaminhamento {
         pais[origem] = pai;
         cores[origem] = cinza;
 
-        Iterator<Integer> i = grafo.adj[origem].listIterator();
-
-        while(i.hasNext()) {
-            int n= i.next();
-            if(n != pai) {
-
-                DFSCycleUtil(grafo, n, origem, cores,pais);
+        for (int n : grafo.adj[origem]) {
+            if (n != pai) {
+                DFSCycleUtil(grafo, n, origem, cores, pais);
             }
 
         }
@@ -62,8 +58,8 @@ public class CiclosCaminhamento {
 
     static void DFSCycle(Graph grafo) {
 
-        int cores[] = new int[grafo.V];
-        int pais[] = new int[grafo.V];
+        int[] cores = new int[grafo.V];
+        int[] pais = new int[grafo.V];
 
         for(int i = 0;i < grafo.V; i++) {
             cores[i] = branco;
