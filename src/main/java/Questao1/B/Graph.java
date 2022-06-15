@@ -1,4 +1,4 @@
-package Questao1;
+package Questao1.B;
 
 import java.util.*;
 
