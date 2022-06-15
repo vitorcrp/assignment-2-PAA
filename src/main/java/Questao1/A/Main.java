@@ -27,7 +27,7 @@ public class Main {
 
         Permutation permutation = new Permutation();
 
-        permutation.permute(str, 0, n-1);
+        permutation.permute(graph, 0, n-1);
 
     }
 

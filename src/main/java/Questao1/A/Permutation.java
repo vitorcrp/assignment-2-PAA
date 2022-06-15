@@ -2,6 +2,8 @@ package Questao1.A;
 
 import Questao1.Graph;
 
+import java.util.LinkedList;
+
 public class Permutation
 {
     /**
@@ -45,22 +47,18 @@ public class Permutation
 
      */
 
-    public String swap(Graph graph, int i, int j)
-
+    public void swap(Graph graph, int i, int j)
     {
+        LinkedList<Integer> temp;
 
-        char temp;
+        LinkedList<Integer>[] adjacentes = graph.adj;
 
-        char[] charArray = a.toCharArray();
+        temp = adjacentes[i];
 
-        temp = charArray[i] ;
+        if(adjacentes[i].contains(j))
+        adjacentes[i] = adjacentes[j];
 
-        charArray[i] = charArray[j];
-
-        charArray[j] = temp;
-
-        return String.valueOf(charArray);
-
+        adjacentes[j] = temp;
     }
 
 

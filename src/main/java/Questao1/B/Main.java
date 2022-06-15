@@ -1,6 +1,5 @@
 package Questao1.B;
 
-import Questao1.A.Permutation;
 import Questao1.Graph;
 
 import static Questao1.B.CiclosCaminhamento.DFSCycle;
@@ -24,7 +23,7 @@ public class Main {
 
         DFSCycle(graph);
 
-        var a = graph.cycles;
+        var a = graph.ciclos;
     }
 
 }

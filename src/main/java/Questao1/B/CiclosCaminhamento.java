@@ -6,74 +6,74 @@ import java.util.*;
 
 public class CiclosCaminhamento {
 
-    static int white = 0, gray = 1, black = 2;
+    static int branco = 0, cinza = 1, preto = 2;
 
 
-    static void DFSCycleUtil(Graph graph, int source, int parent, int[] color, int parents[]) {
+    static void DFSCycleUtil(Graph grafo, int origem, int pai, int[] cores, int pais[]) {
 
 
 
-        if(color[source]== gray) {
-            System.out.println("Cycle");
-            int curr_parent = parent;
-            graph.cycles[Graph.num_cycles].add(source);
-            System.out.println(source);
+        if(cores[origem]== cinza) {
+            System.out.println("Ciclo");
+            int paiAtual = pai;
+            grafo.ciclos[Graph.numeroCiclos].add(origem);
+            System.out.println(origem);
 
-            while(curr_parent != source) {
-                graph.cycles[Graph.num_cycles].add(curr_parent);
-                System.out.println(curr_parent);
-                curr_parent = parents[curr_parent];
+            while(paiAtual != origem) {
+                grafo.ciclos[Graph.numeroCiclos].add(paiAtual);
+                System.out.println(paiAtual);
+                paiAtual = pais[paiAtual];
 
             }
 
 
 
-//			for(int i = source;i<color.length;i++) {
-//				if(color[i]==gray) {
+//			for(int i = origem;i<cores.length;i++) {
+//				if(cores[i]==gray) {
 //					cycles[num_cycles].add(i);
 //					System.out.println(i);
 //				}
 //			}
-            Graph.num_cycles ++;
+            Graph.numeroCiclos++;
             return;
         }
 
-        else if(color[source]== black) {
+        else if(cores[origem]== preto) {
             return;
         }
 
-        parents[source] = parent;
-        color[source] = gray;
+        pais[origem] = pai;
+        cores[origem] = cinza;
 
-        Iterator<Integer> i = graph.adj[source].listIterator();
+        Iterator<Integer> i = grafo.adj[origem].listIterator();
 
         while(i.hasNext()) {
             int n= i.next();
-            if(n != parent) {
+            if(n != pai) {
 
-                DFSCycleUtil(graph, n, source, color,parents);
+                DFSCycleUtil(grafo, n, origem, cores,pais);
             }
 
         }
 
-        color[source] = black;
+        cores[origem] = preto;
 
     }
 
-    static void DFSCycle(Graph graph) {
+    static void DFSCycle(Graph grafo) {
 
-        int color[] = new int[graph.V];
-        int parents[] = new int[graph.V];
+        int cores[] = new int[grafo.V];
+        int pais[] = new int[grafo.V];
 
-        for(int i = 0;i < graph.V; i++) {
-            color[i] = white;
+        for(int i = 0;i < grafo.V; i++) {
+            cores[i] = branco;
         }
 
-        for(int i=0; i<graph.V ;i++) {
+        for(int i=0; i<grafo.V ;i++) {
 
-            if(color[i]== white) {
+            if(cores[i]== branco) {
 
-                DFSCycleUtil(graph, i,-1,color,parents);
+                DFSCycleUtil(grafo, i,-1,cores,pais);
             }
 
         }
