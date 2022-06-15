@@ -1,12 +1,12 @@
 package Questao2.BranchAndBound;
 
+import java.util.Date;
+
 import static Questao2.BranchAndBound.Knapsack.knapsack;
 
 public class Main {
 
     public static void main(String[] args) {
-        double initialTime = System.currentTimeMillis();
-
         int capacity = 9;
 
         var item1 = Item.builder()
@@ -29,11 +29,12 @@ public class Main {
                 .weight(4)
                 .build();
 
-        Item array[] = { item1, item2, item3, item4};
-        System.out.println("Utilizando a estratégia Branch and Bound a melhor solução encontrada é: " + knapsack(capacity, array, array.length));
+        Item[] array = { item1, item2, item3, item4};
 
-        double endTime = System.currentTimeMillis();
-        double totalTime = (endTime - initialTime) / 10000;
-        System.out.println("Tempo = " + totalTime);
+        var inicio = new Date().getTime();
+        System.out.println("Utilizando a estratégia Branch and Bound a melhor solução encontrada é: " + knapsack(capacity, array, array.length));
+        var fim = new Date().getTime();
+
+        System.out.println("\nTempo para execução: " + (fim-inicio)/1000.0 + " s.");
     }
 }

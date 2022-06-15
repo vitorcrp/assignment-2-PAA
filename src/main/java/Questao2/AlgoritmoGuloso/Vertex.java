@@ -1,27 +1,14 @@
 package Questao2.AlgoritmoGuloso;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 class Vertex implements Comparable<Vertex> {
 
     private Character id;
     private Integer distance;
-
-    public Vertex(Character id, Integer distance) {
-        super();
-        this.id = id;
-        this.distance = distance;
-    }
-
-    public Character getId() {
-        return id;
-    }
-
-    public Integer getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Integer distance) {
-        this.distance = distance;
-    }
 
     @Override
     public int hashCode() {
@@ -48,11 +35,8 @@ class Vertex implements Comparable<Vertex> {
         } else if (!distance.equals(other.distance))
             return false;
         if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
     @Override

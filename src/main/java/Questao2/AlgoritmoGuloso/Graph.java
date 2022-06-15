@@ -19,12 +19,12 @@ class Graph {
     }
 
     public void printGraph(Character character){
-        System.out.printf("Vertex: " + character + " " + this.vertices.get(character).toString() + "\n");
+        System.out.print("Vertex: " + character + " " + this.vertices.get(character).toString() + "\n");
     }
 
     public List<Character> getShortestPath(Character start, Character finish) {
-        final Map<Character, Integer> distances = new HashMap<>();
-        final Map<Character, Vertex> previous = new HashMap<>();
+        var distances = new HashMap<Character, Integer>();
+        var previous = new HashMap<Character, Vertex>();
         PriorityQueue<Vertex> nodes = new PriorityQueue<>();
 
         for(Character vertex : vertices.keySet()) {
@@ -39,7 +39,7 @@ class Graph {
         }
 
         while (!nodes.isEmpty()) {
-            Vertex smallest = nodes.poll();
+            var smallest = nodes.poll();
             if (smallest.getId() == finish) {
                 var path = new ArrayList<Character>();
                 while (previous.get(smallest.getId()) != null) {
@@ -54,18 +54,17 @@ class Graph {
             }
 
             for (Vertex neighbor : vertices.get(smallest.getId())) {
-                Integer alt = distances.get(smallest.getId()) + neighbor.getDistance();
+                var alt = distances.get(smallest.getId()) + neighbor.getDistance();
                 if (alt < distances.get(neighbor.getId())) {
                     distances.put(neighbor.getId(), alt);
                     previous.put(neighbor.getId(), smallest);
 
-                    forloop:
-                    for(Vertex n : nodes) {
+                    for (Vertex n : nodes) {
                         if (n.getId() == neighbor.getId()) {
                             nodes.remove(n);
                             n.setDistance(alt);
                             nodes.add(n);
-                            break forloop;
+                            break;
                         }
                     }
                 }

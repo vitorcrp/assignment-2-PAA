@@ -5,18 +5,18 @@ import java.util.List;
 
 class Knapsack {
 
-    static Item[] swap(Item[] arr, int i, int j) {
-        var aux = arr[i];
-        arr[i] = arr[j];
-        arr[j] = aux;
-        return arr;
+    static Item[] swap(Item[] array, int i, int j) {
+        var aux = array[i];
+        array[i] = array[j];
+        array[j] = aux;
+        return array;
     }
 
-    public static void sort(Item array[], int arrayLenght) {
+    public static void sort(Item[] array, int arrayLenght) {
         quicksort(array,0, arrayLenght-1);
     }
 
-    private static void quicksort(Item array[], int esq, int dir) {
+    private static void quicksort(Item[] array, int esq, int dir) {
         int i = esq, j = dir;
         Item pivo = array[(dir+esq)/2];
         while (i <= j) {
@@ -32,7 +32,7 @@ class Knapsack {
         if (i < dir)  quicksort(array, i, dir);
     }
 
-    static int bound(Node u, int arrayLenght, int capacity, Item array[]) {
+    static int bound(Vertex u, int arrayLenght, int capacity, Item[] array) {
 
         if (u.getWeight() >= capacity)
             return 0;
@@ -54,17 +54,17 @@ class Knapsack {
         return profit_bound;
     }
 
-    static int knapsack(int capacity, Item arr[], int arrayLenght) {
-        sort(arr, arr.length);
-        List<Node> Q = new ArrayList<>();
-        Node u = new Node(-1, 0, 0);
-        Node v = new Node(0, 0, 0, 0);
-        Q.add(u);
+    static int knapsack(int capacity, Item[] array, int arrayLenght) {
+        sort(array, array.length);
+        List<Vertex> vertexList = new ArrayList<>();
+        Vertex u = new Vertex(-1, 0, 0);
+        Vertex v = new Vertex(0, 0, 0, 0);
+        vertexList.add(u);
 
         int maxProfit = 0;
-        while (!Q.isEmpty()) {
-            u = Q.get(0);
-            Q.remove(0);
+        while (!vertexList.isEmpty()) {
+            u = vertexList.get(0);
+            vertexList.remove(0);
 
             if (u.getLevel() == -1)
                 v.setLevel(0);
@@ -74,27 +74,27 @@ class Knapsack {
 
             v.setLevel(u.getLevel() + 1);
 
-            v.setWeight(u.getWeight() + arr[v.getLevel()].getWeight());
-            v.setProfit(u.getProfit() + arr[v.getLevel()].getValue());
+            v.setWeight(u.getWeight() + array[v.getLevel()].getWeight());
+            v.setProfit(u.getProfit() + array[v.getLevel()].getValue());
 
             if (v.getWeight() <= capacity && v.getProfit() > maxProfit)
                 maxProfit = v.getProfit();
 
-            v.setBound(bound(v, arrayLenght, capacity, arr));
+            v.setBound(bound(v, arrayLenght, capacity, array));
 
             if (v.getBound() > maxProfit) {
-                Node c = new Node(v.getLevel(), v.getProfit(), v.getBound(), v.getWeight());
-                Q.add(c);
+                Vertex c = new Vertex(v.getLevel(), v.getProfit(), v.getBound(), v.getWeight());
+                vertexList.add(c);
             }
 
             v.setWeight(u.getWeight());
             v.setProfit(u.getProfit());
 
-            v.setBound(bound(v, arrayLenght, capacity, arr));
+            v.setBound(bound(v, arrayLenght, capacity, array));
 
             if (v.getBound() > maxProfit) {
-                Node c = new Node(v.getLevel(), v.getProfit(), v.getBound(), v.getWeight());
-                Q.add(c);
+                Vertex c = new Vertex(v.getLevel(), v.getProfit(), v.getBound(), v.getWeight());
+                vertexList.add(c);
             }
 
         }

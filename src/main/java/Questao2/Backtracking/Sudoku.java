@@ -37,9 +37,9 @@ class Sudoku {
     }
 
     public static boolean solveSudoku(int[][] board) {
-        int row = -1;
-        int col = -1;
-        boolean isEmpty = true;
+        var row = -1;
+        var col = -1;
+        var isEmpty = true;
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
             for (int j = 0; j < BOARD_LENGTH; j++) {

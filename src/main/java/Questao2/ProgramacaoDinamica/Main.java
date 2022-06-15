@@ -1,11 +1,17 @@
 package Questao2.ProgramacaoDinamica;
 
-import static Questao2.ProgramacaoDinamica.LCS.longestCommonSubsequence;
+import java.util.Date;
+
+import static Questao2.ProgramacaoDinamica.LCS.solveLcs;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.printf("Tamanho do LCS é: " + (longestCommonSubsequence("ABCDE", "CDBDE")));
+        var inicio = new Date().getTime();
+        System.out.print("Tamanho do LCS é: " + (solveLcs("ABCDE", "CDBDE")));
+        var fim = new Date().getTime();
+
+        System.out.println("\nTempo para execução: " + (fim-inicio)/1000.0 + " s.");
     }
 
 }

@@ -1,11 +1,12 @@
 package Questao2.DivisaoConquista;
 
+import java.util.Date;
+
 class Main {
     public static void main(String[] args) {
 
         Geracao algoritmo;
-        int n = (args.length < 1) ? 1000 : Integer.parseInt(args[0]);
-        double inicio, fim;
+        var n = (args.length < 1) ? 1000 : Integer.parseInt(args[0]);
 
         algoritmo = new Quicksort(n);
 
@@ -14,9 +15,9 @@ class Main {
         System.out.println("\n Algoritmo desordenado:");
         algoritmo.mostrar();
 
-        inicio = algoritmo.now();
+        var inicio = new Date().getTime();
         algoritmo.sort();
-        fim = algoritmo.now();
+        var fim = new Date().getTime();
 
         System.out.println("\nTempo para ordenar: " + (fim-inicio)/1000.0 + " s.");
 

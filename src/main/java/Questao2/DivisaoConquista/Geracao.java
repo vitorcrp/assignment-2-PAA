@@ -1,6 +1,5 @@
 package Questao2.DivisaoConquista;
 
-import java.util.Date;
 import java.util.Random;
 
 class Geracao {
@@ -19,7 +18,7 @@ class Geracao {
     }
 
     public void aleatorio() {
-        Random rand = new Random();
+        var rand = new Random();
         crescente();
         for (int i = 0; i < n; i++) {
             swap(i, Math.abs(rand.nextInt()) % n);
@@ -37,13 +36,9 @@ class Geracao {
     }
 
     public void swap(int i, int j) {
-        int temp = array[i];
+        var temp = array[i];
         array[i] = array[j];
         array[j] = temp;
-    }
-
-    public long now(){
-        return new Date().getTime();
     }
 
     public void sort(){
