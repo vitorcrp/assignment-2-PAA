@@ -5,8 +5,8 @@ import java.util.LinkedList;
 public class Grafo {
 
     public int V;
-    public LinkedList<Integer> adj[];
-    public LinkedList<Integer> ciclos[];
+    public LinkedList<Integer>[] adj;
+    public LinkedList<Integer>[] ciclos;
     public static int numeroCiclos = 0;
 
     public Grafo(int v){
