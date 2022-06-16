@@ -1,10 +1,9 @@
 package Questao1.B;
 
-import Questao1.Graph;
-
 import java.util.*;
 
 public class CiclosCaminhamento {
+
 
     static int branco = 0, cinza = 1, preto = 2;
 
@@ -16,25 +15,16 @@ public class CiclosCaminhamento {
         if(cores[origem]== cinza) {
             System.out.println("Ciclo");
             int paiAtual = pai;
-            grafo.ciclos[Graph.numeroCiclos].add(origem);
+            grafo.ciclos[Grafo.numeroCiclos].add(origem);
             System.out.println(origem);
 
             while(paiAtual != origem) {
-                grafo.ciclos[Graph.numeroCiclos].add(paiAtual);
+                grafo.ciclos[Grafo.numeroCiclos].add(paiAtual);
                 System.out.println(paiAtual);
                 paiAtual = pais[paiAtual];
-
             }
-
-
-
-//			for(int i = origem;i<cores.length;i++) {
-//				if(cores[i]==gray) {
-//					cycles[num_cycles].add(i);
-//					System.out.println(i);
-//				}
-//			}
-            Graph.numeroCiclos++;
+            System.out.println(origem);
+            Grafo.numeroCiclos++;
             return;
         }
 
@@ -47,7 +37,7 @@ public class CiclosCaminhamento {
 
         for (int n : grafo.adj[origem]) {
             if (n != pai) {
-                DFSCycleUtil(grafo, n, origem, cores, pais);
+                buscaEmProfundidade(grafo, n, origem, cores, pais);
             }
 
         }
@@ -56,23 +46,16 @@ public class CiclosCaminhamento {
 
     }
 
-    static void DFSCycle(Graph grafo) {
-
+    static void encontraCiclo(Grafo grafo) {
         int[] cores = new int[grafo.V];
         int[] pais = new int[grafo.V];
-
         for(int i = 0;i < grafo.V; i++) {
             cores[i] = branco;
         }
-
         for(int i=0; i<grafo.V ;i++) {
-
             if(cores[i]== branco) {
-
-                DFSCycleUtil(grafo, i,-1,cores,pais);
+                buscaEmProfundidade(grafo, i,-1,cores,pais);
             }
-
         }
-
     }
 }

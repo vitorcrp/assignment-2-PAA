@@ -1,15 +1,15 @@
-package Questao1;
+package Questao1.B;
 
 import java.util.LinkedList;
 
-public class Graph {
+public class Grafo {
 
     public int V;
     public LinkedList<Integer> adj[];
     public LinkedList<Integer> ciclos[];
     public static int numeroCiclos = 0;
 
-    public Graph(int v){
+    public Grafo(int v){
         V = v;
         adj = new LinkedList[V];
         ciclos = new LinkedList[V];
