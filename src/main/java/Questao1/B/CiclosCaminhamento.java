@@ -19,7 +19,6 @@ public class CiclosCaminhamento {
             System.out.println(origem);
 
             while(paiAtual != origem) {
-                grafo.ciclos[Grafo.numeroCiclos].add(paiAtual);
                 System.out.println(paiAtual);
                 paiAtual = pais[paiAtual];
             }

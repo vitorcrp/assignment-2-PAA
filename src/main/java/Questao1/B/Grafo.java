@@ -12,11 +12,9 @@ public class Grafo {
     public Grafo(int v){
         V = v;
         adj = new LinkedList[V];
-        ciclos = new LinkedList[V];
 
         for(int i=0; i<V;i++) {
             adj[i] = new LinkedList();
-            ciclos[i] = new LinkedList();
         }
 
     }
