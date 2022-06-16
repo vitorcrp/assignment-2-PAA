@@ -26,22 +26,16 @@ public class CiclosCaminhamento {
             System.out.println(origem);
             Grafo.numeroCiclos++;
             return;
-        }
-
-        else if(cores[origem]== preto) {
+        }else if(cores[origem]== preto) {
             return;
         }
-
         pais[origem] = pai;
         cores[origem] = cinza;
-
         for (int n : grafo.adj[origem]) {
             if (n != pai) {
                 buscaEmProfundidade(grafo, n, origem, cores, pais);
             }
-
         }
-
         cores[origem] = preto;
 
     }
